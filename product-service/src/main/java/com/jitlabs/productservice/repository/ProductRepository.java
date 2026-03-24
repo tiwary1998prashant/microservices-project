@@ -1,0 +1,9 @@
+package com.jitlabs.productservice.repository;
+
+import com.jitlabs.productservice.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface ProductRepository extends JpaRepository<Product, UUID> {
+}
