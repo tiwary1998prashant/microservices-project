@@ -21,4 +21,15 @@ public class AuthService {
         repository.save(user);
         return "User registered successfully";
     }
+    public String login(String email, String password) {
+
+        User user = repository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
+        return jwtUtil.generateToken(email);
+    }
 }
